@@ -16,7 +16,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
+    protected $primaryKey = 'userID';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    public $timestamps = false;
     protected $fillable = [
+        'userID',
         'name',
         'email',
         'password',
@@ -43,5 +49,14 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function Roles()
+    {
+        return $this->belongsTo(Role::class, 'roleID', 'roleID');
+    }
+
+    public function Employee()
+    {
+        return $this->hasOne(Employee::class);
     }
 }
