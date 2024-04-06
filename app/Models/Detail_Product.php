@@ -4,24 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Payment extends Model
+class Detail_Product extends Pivot
 {
     use HasFactory;
 
-    protected $table = 'payments';
-    protected $primaryKey = 'paymentID';
+    protected $table = 'detail__products';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;
+
     protected $fillable = [
-        'paymentID',
-        'payMethod',
+        'productID',
+        'orderID'
     ];
-
-    public function Order()
-    {
-        return $this->hasMany(Order::class);
-    }
-
 }
